@@ -19,32 +19,45 @@ DATA = {
     },
     # можете добавить свои рецепты ;)
 }
-
-def omlet(request):
+def dish_view(request, dish):
     servings = int(request.GET.get('servings', 1))
+    recip_dish = {}
     
-    recip_omlet = {} 
-    for key, values in DATA['omlet'].items():
-        recip_omlet[key] = values * servings
+    for key, values in DATA[dish].items():
+        recip_dish[key] = values * servings
     
     context = {
-        'title': f'Рецепт омлета на {servings} персоны(у)',
-        'recipe': recip_omlet
+        'title': f'Рецепт {dish} на {servings} персоны(у)',
+        'recipe': recip_dish
     }
-    
     return render(request, 'calculator/index.html', context)
+    
+    
+# def omlet(request):
+#     servings = int(request.GET.get('servings', 1))
+    
+#     recip_omlet = {} 
+#     for key, values in DATA['omlet'].items():
+#         recip_omlet[key] = values * servings
+    
+#     context = {
+#         'title': f'Рецепт омлета на {servings} персоны(у)',
+#         'recipe': recip_omlet
+#     }
+    
+#     return render(request, 'calculator/index.html', context)
 
-def pasta(request):
-    servings = int(request.GET.get('servings', 1))
+# def pasta(request):
+#     servings = int(request.GET.get('servings', 1))
     
-    recip_pasta = {}   
+#     recip_pasta = {}   
     
-    for key, values in  DATA['pasta'].items():
-        recip_pasta[key] = values * servings
+#     for key, values in  DATA['pasta'].items():
+#         recip_pasta[key] = values * servings
     
-    context = {
-       'title': f'Рецепт пасты на {servings} персоны(у)',
-       'recipe': recip_pasta
-    }
+#     context = {
+#        'title': f'Рецепт пасты на {servings} персоны(у)',
+#        'recipe': recip_pasta
+#     }
     
-    return render(request, 'calculator/index.html', context)
+#     return render(request, 'calculator/index.html', context)
